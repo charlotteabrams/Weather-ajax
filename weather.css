@@ -1,6 +1,7 @@
 div#wrapper{
 	width: 970px;
 	padding: 20px;
+	background-color: lightblue;
 }
 	div#left{
 		width: 150px;
