@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Weather</title>
+	<link rel="stylesheet" type="text/css" href="weather.css">
+    <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		console.log('code run');
+    		$('button').click(function(){
+	    		var city_name = $('#city').val();
+	    			console.log(city_name);
+				var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city_name + "&APPID=18b826bdcb168c457307e89bef5c2d3f";
+
+					$.get(url, function (res) {
+						var direction = res.wind.deg;
+						// console.log(getDirection(direction));
+						var seconds = res.dt;
+						console.log(seconds);
+						var d = new Date(seconds);
+						d.getHours();
+						d.getMinutes();
+						d.getSeconds();
+						console.log(d);
+						var temperature = res.main.temp;
+						var wind = res.wind.speed;
+						console.log(temperature);
+						console.log(wind);
+	    				// RESPONSE_FROM_WEATHER = res;
+	    				console.log(res);
+    					// return false
+
+    	// 			 	function getDirection(direction){
+					// 	if(direction >= 315 && direction <= 45){
+					// 		var wind_dir = "N";
+					// 	}
+					// 	if(direction > 45 && direction < 135){
+					// 		wind_dir = "E";
+					// 	}
+					// 	if(direction >=135 && direction <=225){
+					// 		wind_dir = "S";
+					// 	}
+					// 	if(direction > 225 && direction < 315){
+					// 		wind_dir = "W";
+					// 	}
+					// 	return wind_dir;
+					// };
+					// var x =getDirection(direction);
+
+		    		$('#right').append(''+
+		    			'<div class="city_weather">'+
+		    				'<p>' + city_name + '</p>'+
+		    				'<p> Temperature' + temperature + 
+		    				'</p><p> Wind' + wind + 'mph</p><p> Date/Time' + d + '</p></div>'); 
+		    		});
+    		
+    		$(document).on('click', '.contact_card', function(){
+    			$(this).find('h2, p, h6').toggle();
+    		});	
+    		});
+    	});
+    </script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="left">
+			<form id="form1">	
+				City: <input type="search" id="city" placeholder="ex: Edmonds">
+			</form>
+			<button type="submit">Submit</button>
+		</div>
+		<div id="right">
+		</div>
+	</div>
+</body>
+</html>
